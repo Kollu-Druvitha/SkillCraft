@@ -224,32 +224,4 @@ Base URL: `http://localhost:5000/api`
 > For all protected routes, set the header key to `Authorization` and value to
 > `Bearer <token>` (replace `<token>` with the JWT you received from register/login).
 
-## 8. Git Setup
 
-Initialize the repository (run from the project root, `student-management-system/`):
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Student Management System"
-```
-
-Push to GitHub:
-
-```bash
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo-name>.git
-git push -u origin main
-```
-
-> Make sure `backend/.env` is **not** committed — it's already listed in `.gitignore`.
-> Only `.env.example` should be pushed to GitHub.
-
-## Notes
-
-- Passwords are hashed using `bcryptjs` before being stored — plain text passwords are never saved.
-- Authentication uses JWT stored in the browser's `localStorage` and sent via the
-  `Authorization: Bearer <token>` header on protected requests.
-- Basic input validation and error handling are implemented on both frontend and backend.
-- This project is intentionally kept simple and dependency-light, suitable for an internship
-  evaluation submission.
