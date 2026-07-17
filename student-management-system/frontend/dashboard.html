@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Student Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top navigation bar -->
+  <header class="navbar">
+    <h1 class="app-title">Student Management System</h1>
+    <div class="navbar-right">
+      <span id="userNameDisplay" class="user-name"></span>
+      <button id="logoutBtn" class="btn btn-outline">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <div id="alertBox" class="alert hidden"></div>
+
+    <!-- Summary cards -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <p class="stat-label">Total Students</p>
+        <p id="totalStudents" class="stat-value">0</p>
+      </div>
+    </section>
+
+    <!-- Toolbar: search + add student -->
+    <section class="toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by name, roll number, course or email..." />
+        <button id="searchBtn" class="btn btn-secondary">Search</button>
+        <button id="clearSearchBtn" class="btn btn-outline">Clear</button>
+      </div>
+      <button id="openAddModalBtn" class="btn btn-primary">+ Add Student</button>
+    </section>
+
+    <!-- Students table -->
+    <section class="table-wrapper">
+      <table class="students-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+          <!-- Rows are injected by JS -->
+        </tbody>
+      </table>
+      <p id="noStudentsMsg" class="no-data-msg hidden">No students found.</p>
+    </section>
+  </main>
+
+  <!-- Add / Edit Student Modal -->
+  <div id="studentModal" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 id="modalTitle">Add Student</h2>
+      <form id="studentForm">
+        <input type="hidden" id="studentId" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="rollNumber">Roll Number</label>
+            <input type="text" id="rollNumber" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" id="course" required />
+          </div>
+          <div class="form-group">
+            <label for="year">Year</label>
+            <input type="number" id="year" min="1" max="6" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" rows="2"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelModalBtn" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" class="modal-overlay hidden">
+    <div class="modal modal-small">
+      <h2>Confirm Delete</h2>
+      <p>Are you sure you want to delete this student record? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button id="cancelDeleteBtn" class="btn btn-outline">Cancel</button>
+        <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
